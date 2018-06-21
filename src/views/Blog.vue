@@ -4,10 +4,13 @@
       <v-flex xs12 sm6 offset-sm3>
         <BlogCard 
           v-for="post in blogPosts" 
-          :key="post.slug" 
+          :key="post.slug"
           :srcImage="post.featured_image"
           :title="post.title"
           :summary="post.summary"
+          :slug="post.slug"
+          :tags="post.tags"
+          :author="post.author"
           class="my-3"
         />
       </v-flex>

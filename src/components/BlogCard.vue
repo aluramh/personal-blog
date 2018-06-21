@@ -1,21 +1,53 @@
 <template>
-  <v-card class="m-3">
-    <v-card-media
-      :src="srcImage"
-      height="100px"
+  <v-card :style="{ position: 'relative'} ">
+    <v-card-media v-if="srcImage" :src="srcImage" height="100px" />
+    <v-avatar
+      size="48" 
+      :style="{ 
+        transform: srcImage
+          ? 'translateY(-24px)'
+          : 'translateY(-1px)'
+      }"
+      class="teal post__avatar mx-2"
+      :class="{ 'mt-2': !srcImage }"
     >
-    </v-card-media>
+      <img :src="author.profile_image">
+    </v-avatar>
+    
     <v-card-title primary-title>
-      <div>
+      <div :style="{ width: '100%' }">
         <div class="headline">{{ title }}</div>
         <span class="grey--text">{{ summary }}</span>
       </div>
     </v-card-title>
+
+    <!-- Actions -->
     <v-card-actions>
-      <v-btn flat color="purple">Leer post</v-btn>
+      <v-btn 
+        color="purple"
+        dark
+        text-color="white" 
+        @click="$router.push(`/blog/${slug}`)"
+      >
+        Leer post
+      </v-btn>
       <v-btn flat>Compartir</v-btn>
       <v-spacer></v-spacer>
     </v-card-actions>
+
+    <!-- Blog tags -->
+    <div class="text-xs-center text-sm-left pa-2">
+      <v-chip v-for="(tag, i) in tags" :key="i" 
+        outline
+        small
+        dark
+        color="teal" 
+        text-color="teal"
+      >
+        <!-- <v-icon left>label</v-icon> -->
+        {{ tag.name }}
+      </v-chip>
+    </div>
   </v-card>
 </template>
 
@@ -24,7 +56,17 @@ export default {
   props: {
     srcImage: String,
     title: String,
-    summary: String
+    summary: String,
+    slug: String,
+    tags: Array,
+    author: Object
   }
 };
 </script>
+
+<style lang="scss">
+.post__avatar {
+  position: absolute !important;
+  left: 0px;
+}
+</style>

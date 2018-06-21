@@ -50,6 +50,7 @@ export default {
       });
     },
     async fetchPosts() {
+      // eslint-disable-next-line
       const { data: { data: [first] } } = await butter.post.list({
         page: 1,
         page_size: 10

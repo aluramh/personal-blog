@@ -31,10 +31,32 @@
 </template>
 
 <script>
+import { butter } from "@/buttercms";
+
 export default {
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  created() {
+    this.fetchHeadline();
+    this.fetchPosts();
+  },
+  methods: {
+    fetchHeadline() {
+      butter.content.retrieve(["homepage_headline"]).then(res => {
+        console.log("Headline from ButterCMS");
+        console.log(res);
+      });
+    },
+    async fetchPosts() {
+      const { data: { data: [first] } } = await butter.post.list({
+        page: 1,
+        page_size: 10
+      });
+      console.log("Content from ButterCMS");
+      console.log(first);
+    }
   }
 };
 </script>

@@ -1,16 +1,21 @@
 <template>
   <v-app id="app" :dark="$store.getters.darkTheme">
-    <NavHeader /> 
-    <router-view />
+    <NavHeader />
+    <v-content>
+      <router-view />
+    </v-content>
+    <AppDrawer />
   </v-app>
 </template>
 
 <script>
 import NavHeader from "@/components/NavHeader";
+import AppDrawer from "@/components/AppDrawer";
 
 export default {
   components: {
-    NavHeader
+    NavHeader,
+    AppDrawer
   }
 };
 </script>

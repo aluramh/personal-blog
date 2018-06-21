@@ -1,5 +1,10 @@
 <template>
   <v-toolbar>
+    <v-toolbar-side-icon 
+      @click="$store.dispatch('toggleDrawer')"
+      class="hidden-md-and-up"
+    />
+
     <v-btn flat @click="go('/')">
       <v-toolbar-title class="mr-3">
         {{ title }}
@@ -13,9 +18,12 @@
     </v-toolbar-items>
 
     <v-spacer></v-spacer>
-    <v-btn @click="$store.dispatch('toggleDarkTheme')">
-      {{ $store.getters.darkTheme ? 'Go dark' : 'Lights!' }}
-    </v-btn>
+    <!-- Switch theme -->
+    <div class="text-center">
+      <v-btn icon flat color="primary" @click="$store.dispatch('toggleDarkTheme')">
+        <v-icon>{{ $store.getters.darkTheme ? 'flash_on' : 'flash_off' }}</v-icon>
+      </v-btn>
+    </div>
   </v-toolbar>
 </template>
 

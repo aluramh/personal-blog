@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
-    <NavHeader />
+  <v-app id="app" :dark="$store.getters.darkTheme">
+    <NavHeader /> 
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -14,7 +14,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss">
 #app {

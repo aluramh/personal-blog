@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <div>
     <v-content>
       <section>
         <v-parallax :src="require('../assets/hero.jpeg')" height="600">
@@ -165,22 +165,5 @@
         </v-container>
       </section>
     </v-content>
-  </v-app>
+  </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
-export default {
-  name: "home",
-  components: {
-    HelloWorld
-  },
-  data() {
-    return {
-      title: "DBlog"
-    };
-  }
-};
-</script>

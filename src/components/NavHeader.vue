@@ -1,14 +1,21 @@
 <template>
   <v-toolbar>
-    <v-toolbar-title class="mr-3" @click="go('/')">
-      {{ title }}
-    </v-toolbar-title>
-    <!-- <v-spacer></v-spacer> -->
+    <v-btn flat @click="go('/')">
+      <v-toolbar-title class="mr-3">
+        {{ title }}
+      </v-toolbar-title>
+    </v-btn>
+
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat @click="go('/blog')">Blog</v-btn>
       <v-btn flat @click="go('/archive')">Archive</v-btn>
       <v-btn flat @click="go('/about')">About</v-btn>
     </v-toolbar-items>
+
+    <v-spacer></v-spacer>
+    <v-btn @click="$store.dispatch('toggleDarkTheme')">
+      {{ $store.getters.darkTheme ? 'Go dark' : 'Lights!' }}
+    </v-btn>
   </v-toolbar>
 </template>
 

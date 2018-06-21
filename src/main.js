@@ -6,6 +6,7 @@ import Vuetify from "vuetify";
 import "./registerServiceWorker";
 import "vuetify/dist/vuetify.min.css";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
+import "./styles/fonts.scss";
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);

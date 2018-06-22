@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home";
 import About from "./views/About";
 import Blog from "./views/Blog";
 import BlogPost from "./views/BlogPost";
@@ -12,8 +11,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      redirect: "/blog"
     },
     {
       path: "/blog",
@@ -23,7 +21,8 @@ export default new Router({
     {
       path: "/blog/:slug",
       name: "blog-post",
-      component: BlogPost
+      component: BlogPost,
+      props: true
     },
     {
       path: "/archive",

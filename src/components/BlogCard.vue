@@ -1,7 +1,7 @@
 <template>
   <v-card :style="{ position: 'relative'} ">
     <v-card-media v-if="srcImage" :src="srcImage" height="100px" />
-    <v-avatar
+    <!-- <v-avatar
       size="48" 
       :style="{ 
         transform: srcImage
@@ -12,7 +12,7 @@
       :class="{ 'mt-2': !srcImage }"
     >
       <img :src="author.profile_image">
-    </v-avatar>
+    </v-avatar> -->
     
     <v-card-title primary-title>
       <div :style="{ width: '100%' }">
@@ -27,7 +27,7 @@
         color="purple"
         dark
         text-color="white" 
-        @click="$router.push(`/blog/${slug}`)"
+        :to="`/blog/${slug}`"
       >
         Leer post
       </v-btn>

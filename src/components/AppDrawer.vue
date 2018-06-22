@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" temporary absolute>
+  <v-navigation-drawer v-model="drawer" absolute>
     <v-toolbar flat>
       <v-list>
         <v-list-tile>

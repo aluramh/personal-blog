@@ -9,14 +9,31 @@
     <div v-html="post.data.body"></div>
 
     <!-- Pagination -->
-    <v-btn v-if="post.meta.previous_post" :to="'/blog/' + post.meta.previous_post.slug" class="button">
-      <v-icon>navigate_before</v-icon>
-      {{ post.meta.previous_post.title }}
-    </v-btn>
-    <v-btn v-if="post.meta.next_post" :to="'/blog/' + post.meta.next_post.slug" class="button">
-      {{ post.meta.next_post.title }}
-      <v-icon>navigate_next</v-icon>
-    </v-btn>
+    <v-tooltip v-if="post.meta.previous_post" bottom>
+      <v-btn 
+        slot="activator" 
+        :to="`/blog/${post.meta.previous_post.slug}`" 
+        color="primary" 
+        class="button"
+      >
+        <v-icon>navigate_before</v-icon>
+        {{ post.meta.previous_post.title }}
+      </v-btn>
+      <span>Previous post</span>
+    </v-tooltip>
+
+    <v-tooltip v-if="post.meta.next_post" bottom>
+      <v-btn 
+        slot="activator" 
+        :to="`/blog/${post.meta.next_post.slug}`" 
+        color="primary" 
+        class="button"
+      >
+        <v-icon>navigate_next</v-icon>
+        {{ post.meta.next_post.title }}
+      </v-btn>
+      <span>Next post</span>
+    </v-tooltip>
   </v-container>
 </template>
 

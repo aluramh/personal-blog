@@ -1,15 +1,13 @@
 <template>
   <v-container>
-    <v-layout row class="pt-3">
+    <v-layout row wrap class="pt-3">
       <v-flex
-        v-for="(blogs, index) in splitData"
-        :key="index"
-        xs12
-        sm6
+        v-for="post in [...blogPosts, ...blogPosts]"
+        :key="post.slug"
+        xs4
+        sm4
       >
         <BlogCard 
-          v-for="post in blogs" 
-          :key="post.slug"
           :srcImage="post.featured_image"
           :title="post.title"
           :summary="post.summary"

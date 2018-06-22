@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <v-layout row wrap class="pt-3">
+    <v-layout v-bind="binding" class="pt-3">
       <v-flex
-        v-for="post in [...blogPosts, ...blogPosts]"
+        v-for="post in blogPosts"
         :key="post.slug"
-        xs4
         sm4
+        xs12
       >
         <BlogCard 
           :srcImage="post.featured_image"
@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import { butter } from "@/buttercms";
-import { chunk as _chunk } from "lodash";
+import { fetchPosts } from "@/buttercms";
 import BlogCard from "@/components/BlogCard";
 
 export default {
@@ -42,30 +41,18 @@ export default {
   },
   async created() {
     // this.fetchHeadline();
-    this.blogPosts = await this.fetchPosts();
+    this.blogPosts = await fetchPosts();
     console.log(this.blogPosts);
-    console.log(this._chunk(this.blogPosts, 2));
-  },
-  methods: {
-    fetchHeadline() {
-      butter.content.retrieve(["homepage_headline"]).then(res => {
-        console.log("Headline from ButterCMS");
-        console.log(res);
-      });
-    },
-    async fetchPosts() {
-      // eslint-disable-next-line
-      const { data: { data: blogPosts } } = await butter.post.list({
-        page: 1,
-        page_size: 10
-      });
-      return blogPosts;
-    },
-    _chunk
   },
   computed: {
-    splitData() {
-      return _chunk(this.blogPosts, this.chunkSize);
+    binding() {
+      const binding = {};
+      if (this.$vuetify.breakpoint.smAndDown) {
+        binding.row = true;
+        binding.wrap = true;
+      }
+
+      return binding;
     }
   }
 };

@@ -1,5 +1,6 @@
 <template>
   <v-card :style="{ position: 'relative'} ">
+    <lol></lol>
     <v-card-media v-if="srcImage" :src="srcImage" height="100px" />
     <!-- <v-avatar
       size="48" 
@@ -16,7 +17,7 @@
     
     <v-card-title primary-title>
       <div :style="{ width: '100%' }">
-        <div class="headline">{{ title }}</div>
+        <div class="headline" :style="{ cursor: 'pointer' }">{{ title }}</div>
         <span class="grey--text">{{ summary }}</span>
       </div>
     </v-card-title>
@@ -52,7 +53,10 @@
 </template>
 
 <script>
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "blog-card",
   props: {
     srcImage: String,
     title: String,
@@ -61,7 +65,7 @@ export default {
     tags: Array,
     author: Object
   }
-};
+});
 </script>
 
 <style lang="scss">

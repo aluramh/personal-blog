@@ -1,15 +1,15 @@
 import butter from "./config";
 
-export async function getPost(slug) {
+export const getPost = async slug => {
   try {
     const { data: post } = await butter.post.retrieve(slug);
     return post;
   } catch (e) {
     console.error(e);
   }
-}
+};
 
-export async function fetchPosts() {
+export const fetchPosts = async () => {
   try {
     // eslint-disable-next-line
     const {
@@ -22,11 +22,11 @@ export async function fetchPosts() {
   } catch (e) {
     console.error(e);
   }
-}
+};
 
-export async function fetchHeadline() {
+export const fetchHeadline = async () => {
   butter.content.retrieve(["homepage_headline"]).then(res => {
     console.log("Headline from ButterCMS");
     console.log(res);
   });
-}
+};

@@ -26,7 +26,7 @@
       <v-btn 
         slot="activator" 
         :to="`/blog/${post.meta.next_post.slug}`" 
-        color="primary" 
+        color="primary"
         class="button"
       >
         <v-icon>navigate_next</v-icon>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { butter } from "@/buttercms";
+import { getPost } from "@/buttercms";
 
 export default {
   name: "blog-post",
@@ -49,23 +49,11 @@ export default {
     };
   },
   async created() {
-    this.post = await this.getPost();
-  },
-  methods: {
-    async getPost() {
-      try {
-        const { data: post } = await butter.post.retrieve(
-          this.$route.params.slug
-        );
-        return post;
-      } catch (e) {
-        console.error(e);
-      }
-    }
+    this.post = await getPost();
   },
   watch: {
     async "$route.params.slug"() {
-      this.post = await this.getPost();
+      this.post = await getPost();
     }
   }
 };

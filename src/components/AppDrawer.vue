@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" absolute>
+  <v-navigation-drawer v-if="screenSize" v-model="drawer" absolute>
     <v-toolbar flat>
       <v-list>
         <v-list-tile>
@@ -53,6 +53,9 @@ export default {
     };
   },
   computed: {
+    screenSize() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
     drawer: {
       get() {
         return this.$store.getters.drawer;

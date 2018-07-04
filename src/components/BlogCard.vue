@@ -23,18 +23,22 @@
     </v-card-title>
 
     <!-- Actions -->
-    <v-card-actions>
-      <v-btn 
-        color="purple"
-        dark
-        text-color="white" 
-        :to="`/blog/${slug}`"
-      >
-        Leer post
-      </v-btn>
-      <v-btn flat>Compartir</v-btn>
-      <v-spacer></v-spacer>
-    </v-card-actions>
+      <v-card-actions>
+        <v-layout justify-space-between>
+          <v-btn 
+            color="purple"
+            dark
+            text-color="white"
+            :to="`/blog/${slug}`"
+          >
+            Leer post
+          </v-btn>
+
+          <v-btn flat>
+            <v-icon>share</v-icon>
+          </v-btn>
+        </v-layout>
+      </v-card-actions>
 
     <!-- Blog tags -->
     <div class="text-xs-center text-sm-left pa-2">

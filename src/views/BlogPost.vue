@@ -1,28 +1,40 @@
 <template>
-  <v-container>
-    <pre :style="{ textAlign: 'left' }">{{ post }}</pre>
-    <h1>{{ post.data.title }}</h1>
-    <h4>{{ post.data.author.first_name }} {{ post.data.author.last_name }}</h4>
-    
-    <v-divider class="my-5"></v-divider>
+  <div>
+    <!-- <pre :style="{ textAlign: 'left' }">{{ post }}</pre> -->
 
-    <div v-html="post.data.body"></div>
+    <section>
+      <component 
+        :is="post.data.featured_image ? 'v-parallax' : 'v-container'" 
+        :src="post.data.featured_image" height="300"
+      >
+        <v-layout column align-center justify-center>
+          <h1>{{ post.data.title }}</h1>
+          <h3>{{ post.data.author.first_name }} {{ post.data.author.last_name }}</h3>
+        </v-layout>
+      </component>
+    </section>
 
-    <!-- Pagination -->
-    <BlogNavigation
-      v-if="post.meta.previous_post"
-      :title="post.meta.previous_post.title"
-      :slug="post.meta.previous_post.slug"
-      type="prev"
-    />
+    <section>
+      <v-container>
+        <div v-html="post.data.body" class="text-sm-left mb-3"></div>
 
-    <BlogNavigation
-      v-if="post.meta.next_post"
-      :title="post.meta.next_post.title"
-      :slug="post.meta.next_post.slug"
-      type="next"
-    />
-  </v-container>
+        <!-- Pagination -->
+        <BlogNavigation
+          v-if="post.meta.previous_post"
+          :title="post.meta.previous_post.title"
+          :slug="post.meta.previous_post.slug"
+          type="prev"
+        />
+
+        <BlogNavigation
+          v-if="post.meta.next_post"
+          :title="post.meta.next_post.title"
+          :slug="post.meta.next_post.slug"
+          type="next"
+        />
+      </v-container>
+    </section>
+  </div>
 </template>
 
 <script>
